@@ -1,0 +1,20 @@
+body {
+    font-family: sans;
+}
+
+label {
+    display: inline-block;
+    font-size: 14px;
+    width: 150px;
+}
+
+input {
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+pre {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f0f0f0;
+}

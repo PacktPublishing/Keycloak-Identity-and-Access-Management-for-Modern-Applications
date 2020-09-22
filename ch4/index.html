@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keycloak Example Application</title>
+    <script type="text/javascript" src="KC_URL/js/keycloak.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="init()">
+
+<h1>OpenID Connect Playground</h1>
+
+<button onclick="step('discovery')">1 - Discovery</button>
+<button onclick="step('authentication')">2 - Authentication</button>
+<button onclick="step('token')">3 - Token</button>
+<button onclick="step('refresh')">4 - Refresh</button>
+<button onclick="step('userinfo')">5 - UserInfo</button>
+
+<hr/>
+
+<div id="step-discovery" style="display: none;">
+    <h2>Discovery</h2>
+    <p>
+        <label>Issuer</label><input id="input-issuer" value="http://localhost:8080/auth/realms/myrealm">
+    </p>
+    <p>
+        <button onclick="loadDiscovery()">Load OpenID Provider Configuration</button>
+    </p>
+    <hr/>
+    <h3>OpenID Provider Configuration</h3>
+    <pre id="output-discovery"></pre>
+</div>
+
+<div id="step-authentication" style="display: none;">
+    <h2>Authentication</h2>
+    <p>
+        <label>client_id</label><input id="input-clientid" value="myclient"><br/>
+        <label>scope</label><input id="input-scope" value="openid"><br/>
+        <label>prompt</label><input id="input-prompt" value=""><br/>
+        <label>max_age</label><input id="input-maxage" value=""><br/>
+        <label>login_hint</label><input id="input-loginhint" value="">
+    </p>
+    <p>
+        <button onclick="generateAuthenticationRequest()">Generate Authentication Request</button>
+    </p>
+    <hr/>
+    <h3>Authentication Request</h3>
+    <pre id="output-authenticationRequest"></pre>
+    <button id="authenticationRequestLink">Send Authentication Request</button>
+
+    <hr/>
+    <h3>Authentication Response</h3>
+    <pre id="output-authenticationResponse"></pre>
+</div>
+
+<div id="step-token" style="display: none;">
+    <h2>Token</h2>
+    <p>
+        <label>Authorization Code</label><input id="input-code">
+    </p>
+    <p>
+        <button onclick="loadTokens()">Send Token Request</button>
+    </p>
+    <hr/>
+    <h3>Token Request</h3>
+    <pre id="output-tokenRequest"></pre>
+
+    <h3>Token Response</h3>
+    <pre id="output-response"></pre>
+
+    <h3>ID Token</h3>
+    <pre id="output-idtoken"></pre>
+</div>
+
+<div id="step-refresh" style="display: none;">
+    <h2>Refresh</h2>
+    <p>
+        <button onclick="refreshTokens()">Send Refresh Request</button>
+    </p>
+    <hr/>
+
+    <h3>Refresh Request</h3>
+    <pre id="output-refreshRequest"></pre>
+
+    <h3>Refresh Response</h3>
+    <pre id="output-refreshResponse"></pre>
+
+    <h3>ID Token</h3>
+    <pre id="output-idtokenRefreshed"></pre>
+</div>
+
+<div id="step-userinfo" style="display: none;">
+    <h2>UserInfo</h2>
+    <p>
+        <button onclick="userInfo()">Send UserInfo Request</button>
+    </p>
+    <hr/>
+
+    <h3>UserInfo Request</h3>
+    <pre id="output-userInfoRequest"></pre>
+
+    <h3>UserInfo Response</h3>
+    <pre id="output-userInfoResponse"></pre>
+</div>
+
+</body>
+</html>
