@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Keycloak Example Application</title>
+    <title>OpenID Connect Playground</title>
     <script type="text/javascript" src="KC_URL/js/keycloak.js"></script>
     <script type="text/javascript" src="client.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -15,6 +15,7 @@
 <button onclick="step('token')">3 - Token</button>
 <button onclick="step('refresh')">4 - Refresh</button>
 <button onclick="step('userinfo')">5 - UserInfo</button>
+<button onclick="reset()">Reset</button>
 
 <hr/>
 
@@ -34,7 +35,7 @@
 <div id="step-authentication" style="display: none;">
     <h2>Authentication</h2>
     <p>
-        <label>client_id</label><input id="input-clientid" value="myclient"><br/>
+        <label>client_id</label><input id="input-clientid" value="oidc-playground"><br/>
         <label>scope</label><input id="input-scope" value="openid"><br/>
         <label>prompt</label><input id="input-prompt" value=""><br/>
         <label>max_age</label><input id="input-maxage" value=""><br/>
@@ -69,7 +70,12 @@
     <pre id="output-response"></pre>
 
     <h3>ID Token</h3>
+    Header
+    <pre id="output-idtokenHeader"></pre>
+    Payload
     <pre id="output-idtoken"></pre>
+    Signature
+    <pre id="output-idtokenSignature"></pre>
 </div>
 
 <div id="step-refresh" style="display: none;">
