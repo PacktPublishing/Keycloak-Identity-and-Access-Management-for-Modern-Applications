@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth 2.0 Playground</title>
+    <script type="text/javascript" src="KC_URL/js/keycloak.js"></script>
+    <script type="text/javascript">
+        var serviceUrl = 'SERVICE_URL';
+    </script>
+    <script type="text/javascript" src="client.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="init()">
+
+<h1>OAuth 2.0 Playground</h1>
+
+<button onclick="step('discovery')">1 - Discovery</button>
+<button onclick="step('authorization')">2 - Authorization</button>
+<button onclick="step('invoke')">3 - Invoke Service</button>
+<button onclick="reset()">Reset</button>
+
+<hr/>
+
+<div id="step-discovery" style="display: none;">
+    <h2>Discovery</h2>
+    <p>
+        <label>Issuer</label><input id="input-issuer" value="http://localhost:8080/auth/realms/myrealm">
+    </p>
+    <p>
+        <button onclick="loadDiscovery()">Load OpenID Provider Configuration</button>
+    </p>
+    <hr/>
+    <h3>OAuth 2.0 Provider Configuration</h3>
+    <pre id="output-discovery"></pre>
+</div>
+
+<div id="step-authorization" style="display: none;">
+    <h2>Authorization</h2>
+    <p>
+        <label>client_id</label><input id="input-clientid" value="oauth-playground"><br/>
+        <label>scope</label><input id="input-scope" value=""><br/>
+    </p>
+    <p>
+        <button onclick="generateAuthorizationRequest()">Send Authorization Request</button>
+    </p>
+
+    <hr/>
+    <h3>Access Token</h3>
+    Header
+    <pre id="output-accessTokenHeader"></pre>
+    Payload
+    <pre id="output-accessToken"></pre>
+    Signature
+    <pre id="output-accessTokenSignature"></pre>
+</div>
+
+<div id="step-refresh" style="display: none;">
+    <h2>Refresh</h2>
+    <p>
+        <button onclick="refreshTokens()">Send Refresh Request</button>
+    </p>
+    <hr/>
+
+    <h3>Refresh Request</h3>
+    <pre id="output-refreshRequest"></pre>
+
+    <h3>Refresh Response</h3>
+    <pre id="output-refreshResponse"></pre>
+
+    <h3>Access Token</h3>
+    <pre id="output-accessTokenRefreshed"></pre>
+</div>
+
+<div id="step-invoke" style="display: none;">
+    <h2>Invoke Service</h2>
+    <p>
+        <button onclick="invokeService()">Invoke</button>
+    </p>
+    <hr/>
+
+    <h3>Response</h3>
+    <pre id="output-serviceResponse"></pre>
+</div>
+
+</body>
+</html>

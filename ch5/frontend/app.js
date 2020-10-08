@@ -15,8 +15,5 @@ app.get('/', function(req, res) {
     res.render('index.html');
 });
 
-app.get('/client.js', function(req, res) {
-    res.render('client.js');
-});
 
 app.listen(8000);
