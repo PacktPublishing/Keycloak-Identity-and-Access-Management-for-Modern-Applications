@@ -63,6 +63,7 @@ function loadTokens(code) {
                 setOutput('output-accessTokenHeader', accessTokenHeader);
                 setOutput('output-accessToken', accessTokenBody);
                 setOutput('output-accessTokenSignature', accessTokenSignature);
+                document.getElementById('output-accessTokenEncoded').innerHTML = response['access_token'];
                 setState('refreshToken', response['refresh_token']);
                 setState('accessToken', response['access_token']);
             } else {
@@ -83,7 +84,11 @@ function invokeService() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if (req.readyState === 4) {
-            setOutput('output-serviceResponse', req.responseText);
+            if (req.status === 0) {
+                setOutput('output-serviceResponse', "Failed to send request");
+            } else {
+                setOutput('output-serviceResponse', req.responseText);
+            }
         }
     }
     console.debug(serviceUrl);
