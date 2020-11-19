@@ -4,7 +4,7 @@ var app = express();
 app.get('/', function(req, res) {
     var response = '<html><body>';
 
-    response += '<p><a href="http://localhost/callback?logout=http://localhost">Logout</a></p>';
+    response += '<h2><a href="http://localhost/callback?logout=http://localhost">Logout</a></h2>';
 
     response += '<h2>Request headers</h2>'
     response += '<table>';
