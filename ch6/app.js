@@ -12,7 +12,7 @@ var port = server.address().port;
 console.info('Listening on port: ' + port + '\n');
 
 app.get('/callback/', function(req, res) {
-    res.send('<html><script>setTimeout(function() { window.close(); }, 2000);</script><body>Callback endpoint, closing in 2 seconds</body></html>');
+    res.send('<html><script>window.close();</script><body>Completed, please close this tab</body></html>');
     var code = req.query.code;
     server.close();
 
