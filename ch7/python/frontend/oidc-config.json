@@ -1,0 +1,13 @@
+{
+  "web": {
+    "client_id": "mywebapp",
+    "client_secret": CLIENT_SECRET,
+    "auth_uri": "http://localhost:8180/auth/realms/myrealm/protocol/openid-connect/auth",
+    "token_uri": "http://localhost:8180/auth/realms/myrealm/protocol/openid-connect/token",
+    "issuer": "http://localhost:8180/auth/realms/myrealm",
+    "userinfo_uri": "http://localhost:8180/auth/realms/myrealm/protocol/openid-connect/userinfo",
+    "redirect_uris": [
+      "http://localhost:8080/oidc/callback"
+    ]
+  }
+}

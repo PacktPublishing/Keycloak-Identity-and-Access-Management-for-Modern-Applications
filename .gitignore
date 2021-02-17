@@ -1,5 +1,7 @@
-.idea/*
+.idea
 *.iml
+gradle
+.mvn
 
 package-lock.json
 node_modules
