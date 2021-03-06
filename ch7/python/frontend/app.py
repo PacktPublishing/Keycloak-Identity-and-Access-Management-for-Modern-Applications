@@ -2,6 +2,7 @@ from flask import Flask, g
 app = Flask(__name__)
 app.secret_key = 'change_me'
 app.config['OIDC_CLIENT_SECRETS'] = 'oidc-config.json'
+app.config['OIDC_COOKIE_SECURE'] = False
 from flask_oidc import OpenIDConnect
 oidc = OpenIDConnect(app)
 
