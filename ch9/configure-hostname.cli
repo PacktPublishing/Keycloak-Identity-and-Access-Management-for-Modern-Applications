@@ -1,0 +1,4 @@
+embed-server --server-config=standalone-ha.xml --std-out=discard
+/subsystem=keycloak-server/spi=hostname/provider=default:write-attribute(name=properties.frontendUrl,value=https://mykeycloak/auth)
+/subsystem=keycloak-server/spi=hostname/provider=default:write-attribute(name=properties.forceBackendUrlToFrontendUrl,value=true)
+stop-embedded-server

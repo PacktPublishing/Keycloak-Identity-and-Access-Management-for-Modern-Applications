@@ -1,0 +1,8 @@
+embed-server --server-config=standalone-ha.xml --std-out=discard
+module add --name=org.postgres --resources=<PATH_TO_JDBC_DRIVER_JAR> --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name=postgres,driver-module-name=org.postgres,xa-datasource-class=org.postgresql.xa.PGXADataSource)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=connection-url,value=<JDBC_URL>)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=driver-name,value=postgres)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=user-name,value=<USERNAME>)
+/subsystem=datasources/data-source=KeycloakDS:write-attribute(name=password,value=<PASSWORD>)
+stop-embedded-server

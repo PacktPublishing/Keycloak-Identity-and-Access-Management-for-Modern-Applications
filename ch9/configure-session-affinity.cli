@@ -1,0 +1,4 @@
+embed-server --server-config=standalone-ha.xml --std-out=discard
+/subsystem=keycloak-server/spi=stickySessionEncoder:add
+/subsystem=keycloak-server/spi=stickySessionEncoder/provider=infinispan:add(enabled=true,properties={shouldAttachRoute=false})
+stop-embedded-server
