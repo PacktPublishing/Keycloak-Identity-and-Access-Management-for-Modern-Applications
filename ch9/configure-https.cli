@@ -1,0 +1,9 @@
+embed-server --server-config=standalone-ha.xml --std-out=discard
+/subsystem=elytron/key-store=kcKeyStore:add(path=${jboss.home.dir}/Keycloak-IAM-for-Modern-Applications/ch9/mykeycloak.keystore,type=JKS,credential-reference={clear-text=password})
+/subsystem=elytron/key-manager=kcKeyManager:add(key-store=kcKeyStore,credential-reference={clear-text=password})
+/subsystem=elytron/server-ssl-context=kcSSLContext:add(key-manager=kcKeyManager)
+batch
+/subsystem=undertow/server=default-server/https-listener=https:undefine-attribute(name=security-realm)
+/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=ssl-context,value=kcSSLContext)
+run-batch
+stop-embedded-server

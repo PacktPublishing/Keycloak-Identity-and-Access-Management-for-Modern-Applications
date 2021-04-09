@@ -1,0 +1,7 @@
+embed-server --server-config=standalone-ha.xml --std-out=discard
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=sessions:write-attribute(name=owners,value=2)
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=authenticationSessions:write-attribute(name=owners,value=2)
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=clientSessions:write-attribute(name=owners,value=2)
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=sessions:write-attribute(name=owners,value=2)
+/subsystem=infinispan/cache-container=keycloak/distributed-cache=sessions:write-attribute(name=owners,value=2)
+stop-embedded-server
