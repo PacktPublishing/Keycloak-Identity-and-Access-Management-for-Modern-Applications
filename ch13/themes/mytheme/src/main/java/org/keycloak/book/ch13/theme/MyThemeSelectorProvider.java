@@ -6,6 +6,7 @@ import org.keycloak.models.KeycloakContext;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.models.KeycloakUriInfo;
+import org.keycloak.theme.DefaultThemeSelectorProvider;
 import org.keycloak.theme.Theme;
 import org.keycloak.theme.ThemeSelectorProvider;
 import org.keycloak.theme.ThemeSelectorProviderFactory;
@@ -15,7 +16,8 @@ import org.keycloak.theme.ThemeSelectorProviderFactory;
  *
  * <p>You can use this example as a baseline, but never for production.
  */
-public class MyThemeSelectorProvider implements ThemeSelectorProvider, ThemeSelectorProviderFactory {
+public class MyThemeSelectorProvider extends DefaultThemeSelectorProvider
+        implements ThemeSelectorProviderFactory {
 
     private static final String ID = "mythemeselector";
 
@@ -27,6 +29,7 @@ public class MyThemeSelectorProvider implements ThemeSelectorProvider, ThemeSele
     }
 
     public MyThemeSelectorProvider(KeycloakSession session) {
+        super(session);
         this.session = session;
     }
 
@@ -36,25 +39,11 @@ public class MyThemeSelectorProvider implements ThemeSelectorProvider, ThemeSele
         // not targeted for production
         String theme = getThemeParameter();
 
-        if (isValidTheme(type, theme)) {
-            return theme;
+        if (theme == null || !Theme.Type.LOGIN.equals(type)) {
+            return super.getThemeName(type);
         }
 
-        // defaults to the keycloak theme
-        return "keycloak";
-    }
-
-    private String getThemeParameter() {
-        KeycloakContext context = session.getContext();
-        KeycloakUriInfo uri = context.getUri();
-        MultivaluedMap<String, String> parameters = uri.getQueryParameters();
-
-        return parameters.getFirst("theme");
-    }
-
-    private boolean isValidTheme(Theme.Type type, String theme) {
-        // only accept these values and only LOGIN theme type
-        return Theme.Type.LOGIN.equals(type) && "mytheme".equals(theme);
+        return theme;
     }
 
     @Override
@@ -88,5 +77,12 @@ public class MyThemeSelectorProvider implements ThemeSelectorProvider, ThemeSele
         // in this case, we are overriding the default theme selector with this implementation
         // another way to configure this provider is changing the server configuration
         return 100;
+    }
+
+    private String getThemeParameter() {
+        KeycloakContext context = session.getContext();
+        KeycloakUriInfo uri = context.getUri();
+        MultivaluedMap<String, String> parameters = uri.getQueryParameters();
+        return parameters.getFirst("theme");
     }
 }

@@ -1,5 +1,7 @@
 package org.keycloak.book.ch13.authentication;
 
+import static org.keycloak.book.ch13.authentication.MySimpleRiskBasedAuthenticatorFactory.FAILED_LOGIN_ATTEMPTS_BEFORE_2FA;
+
 import java.util.Collections;
 import java.util.Map;
 
@@ -56,6 +58,11 @@ public class MySimpleRiskBasedAuthenticator implements Authenticator {
         RealmModel realm = session.getContext().getRealm();
         UserSessionProvider sessions = session.sessions();
         UserLoginFailureModel loginFailure = sessions.getUserLoginFailure(realm, user.getId());
+
+        if (loginFailure == null) {
+            return RiskScore.LOW;
+        }
+
         int failures = loginFailure.getNumFailures();
         Integer maxFailuresBeforeOtp = getMaxFailuresBeforeOtp(context);
 
@@ -90,7 +97,7 @@ public class MySimpleRiskBasedAuthenticator implements Authenticator {
             config = configModel.getConfig();
         }
 
-        return Integer.valueOf(config.getOrDefault(OTP_REQUIRED_USER_ATTRIBUTE, "3"));
+        return Integer.valueOf(config.getOrDefault(FAILED_LOGIN_ATTEMPTS_BEFORE_2FA, "3"));
     }
 
     @Override

@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-core</artifactId>
+            <artifactId>keycloak-services</artifactId>
             <version>${keycloak.version}</version>
         </dependency>
         <dependency>

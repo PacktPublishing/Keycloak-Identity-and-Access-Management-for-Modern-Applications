@@ -33,6 +33,7 @@ public class MySimpleRiskBasedAuthenticatorFactory implements AuthenticatorFacto
 
     // the authenticator does not keep any state and rely on runtime information. Can be safely shared across multiple threads
     private static final Authenticator AUTHENTICATOR_INSTANCE = new MySimpleRiskBasedAuthenticator();
+    static final String FAILED_LOGIN_ATTEMPTS_BEFORE_2FA = "failedLoginAttemptsBefore2FA";
 
     @Override
     public Authenticator create(KeycloakSession keycloakSession) {
@@ -71,7 +72,7 @@ public class MySimpleRiskBasedAuthenticatorFactory implements AuthenticatorFacto
 
         // by configuring this property, you should be able to configure this authenticator in the administration console
         name.setType(STRING_TYPE);
-        name.setName("failedLoginAttemptsBefore2FA");
+        name.setName(FAILED_LOGIN_ATTEMPTS_BEFORE_2FA);
         name.setLabel("Failed attempts before asking second factor");
         name.setHelpText("The number of failed attempts before asking second factor");
 
