@@ -37,7 +37,7 @@
 
         var kc = new Keycloak({ realm: 'myrealm', clientId: 'myclient' });
         window.onload = function() {
-            kc.init().then(function() {
+            kc.init({'messageReceiveTimeout': 100000}).then(function() {
                 if(kc.authenticated) {
                     profile();
                 } else {
