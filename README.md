@@ -35,7 +35,9 @@ if (test expression)
 Developers, sysadmins, security engineers, or anyone who wants to leverage Keycloak and its capabilities for application security will find this book useful. Beginner-level knowledge of app development and authentication and authorization is expected.
 
 **Errata:**
-Page.6: 
+Page.6: $ docker run -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p
+8080:8080 quay.io/keycloak/keycloak
+
 With the following software and hardware list you can run all code files present in the book (Chapter 1-14).
 
 ### Software and Hardware List
