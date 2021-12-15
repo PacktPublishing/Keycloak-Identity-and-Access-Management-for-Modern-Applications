@@ -34,6 +34,8 @@ if (test expression)
 **Following is what you need for this book:**
 Developers, sysadmins, security engineers, or anyone who wants to leverage Keycloak and its capabilities for application security will find this book useful. Beginner-level knowledge of app development and authentication and authorization is expected.
 
+**Errata:**
+Page.6: 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-14).
 
 ### Software and Hardware List
