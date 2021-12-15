@@ -34,7 +34,8 @@ if (test expression)
 **Following is what you need for this book:**
 Developers, sysadmins, security engineers, or anyone who wants to leverage Keycloak and its capabilities for application security will find this book useful. Beginner-level knowledge of app development and authentication and authorization is expected.
 
-**Errata:**
+## Errata
+
 Page.6: $ docker run -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p
 8080:8080 quay.io/keycloak/keycloak
 
