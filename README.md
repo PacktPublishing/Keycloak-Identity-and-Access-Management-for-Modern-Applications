@@ -58,6 +58,8 @@ Click on the following link to see the Code in Action:
 
 ## Errata
 
+* Page 5 (Code block 2): `$JAVA_HOME/bin/java-version` _should be_ `$JAVA_HOME/bin/java -version`
+
 * Page 6 (Paragraph 5, line 1): `$ docker run -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080 quay.io/keycloak/keycloak` _should be_`$ docker run -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 quay.io/keycloak/keycloak`
 
 ### Related products 
